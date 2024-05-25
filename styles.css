@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: 100vh;
+    place-items: center;
+}
+
+#holder {
+    width: 20%;
+    padding: 20px;
+}
+
+form {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+form > div * {
+    display: block;
+}
+form > div {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+label {
+    font-size: 0.8rem;
+    margin-bottom: 7px;
+}
+
+input {
+    padding: 5px;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+input, button {
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 10px;
+    align-self: start;
+    padding: 5px 30px;
+}
+
+.inputGp {
+    margin-bottom: 5px;
+}
+
+.invalid {
+    color: red;
+    display: none;
+}
+#valid {
+    margin-top: 5px;
+    color: green;
+    display: none;
+}

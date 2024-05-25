@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script defer src="./script.js"></script>
+</head>
+
+<body>
+
+    <div id="holder">
+        <form>
+            <div class="inputGp">
+                <label for="email">Email</label>
+                <input id="email" type="text" placeholder="Example@email.com">
+                <p class="invalid">Make sure email is more than 3 characters and has @ and a .</p>
+            </div>
+            <div class="inputGp">
+                <label for="password">Password</label>
+                <input id="password" type="text" placeholder="Your Password">
+                <p class="invalid">Make sure password is more than 8 characters.</p>
+                <p id="valid">All good to go!</p>
+            </div>
+            <button type="submit" value="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
