@@ -17,7 +17,7 @@ function onChange(e)
 
     if (fieldInFocus.id == `email`)
     {
-        if (currentValue.length <= 3 || !(/^[0-9a-zA-Z]+\@[a-zA-Z]+\.[a-zA-Z]+$/.test(currentValue)))
+        if (currentValue.length <= 3 || !(/^[0-9a-zA-Z.]+\@[a-zA-Z]+\.[a-zA-Z]+$/.test(currentValue)))
         {
             parent.innerHTML += `
             <p class=invalid>Make sure the email is more than 3 characters and has an '@' and a '.'.</p>
