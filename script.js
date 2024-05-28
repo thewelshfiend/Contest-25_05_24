@@ -1,39 +1,85 @@
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const submit = document.getElementsByTagName('button')[0];
-const goAhead = document.getElementById('valid');
+const form = document.querySelector('form');
+const fields = form.getElementsByTagName('input');
+const footSection = document.getElementById('foot');
+const checked = [];
 
-email.addEventListener(`change`, onChange);
-password.addEventListener(`change`, onChange);
-
-let allOk = false;
-function onChange(event)
+for (let field of fields)
 {
-    const currentInput = event.target;
-    const inputName = currentInput.id;
-    const inputValue = currentInput.value;
+    field.addEventListener('change', onChange);
+    checked.push(0);
+}
 
-    if (((inputName == `email`) && (inputValue.length > 3 && (\^[a-zA-Z0-9]+\.[a-z]+$\).test(inputValue))) || ((inputName == `password`) && (inputValue.length > 8)))
+function onChange(e)
+{
+    const fieldInFocus = e.target;
+    const currentValue = fieldInFocus.value;
+    const parent = fieldInFocus.parentElement;
+
+    if (fieldInFocus.id == `email`)
     {
-        allOk = true;
+        if (currentValue.length <= 3 || !(/^[0-9a-zA-Z]+\@[a-zA-Z]+\.[a-zA-Z]+$/.test(currentValue)))
+        {
+            parent.innerHTML += `
+            <p class=invalid>Make sure the email is more than 3 characters and has an '@' and a '.'.</p>
+            `;
+            checked[0] = 0;
+        }
+        else
+        {
+            parent.innerHTML = `
+            <label for=email>Email </label>
+            <input id=email type=email placeholder=Example@email.com value=${currentValue}>
+            `;
+            checked[0] = 1;
+        }
+    }
+    else if (fieldInFocus.id == `password`)
+    {
+        if (currentValue.length <= 8)
+        {
+            parent.innerHTML += `
+            <p class=invalid>Make sure the password is more than 8 characters.</p>
+            `;
+            checked[1] = 0;
+        }
+        else
+        {
+            parent.innerHTML = `
+            <label for=password>Password</label>
+            <input id=password type=password placeholder=Your Password value=${currentValue}>
+            `;
+            checked[1] = 1;
+        }
     }
 
-    if (!allOk)
+    if (checked.includes(0) == false)
     {
-        const msg = currentInput.nextSibling;
-        msg.setAttribute(`style`, `display: block;`);
+        const sanction = document.createElement('p');
+        sanction.id = 'valid';
+        sanction.innerText = `All good to go!`;
+        footSection.prepend(sanction);
     }
     else
     {
-        goAhead.setAttribute(`style`, `display: block;`);
+        footSection.innerHTML = `
+        <button type=submit value=Submit>Submit</button>
+        `;
     }
 }
-    
-submit.addEventListener(`click`, (e) => {
+
+form.addEventListener('submit', (e) => {
     e.preventDefault();
-    prompt(`Confirm Details?`);
-    if (allOk)
+    if (!(checked.includes(0)))
     {
-        alert(`Successful Signup!`);
+        prompt(`Form submission successful!!`);
+    }
+    else
+    {
+        alert(`Form submission failed!`);
+        alert(`Please retry.`);
+        for (let field of fields)
+        {
+            field.value = '';
+        }
     }
 });
