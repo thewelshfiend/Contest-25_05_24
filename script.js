@@ -71,7 +71,7 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!(checked.includes(0)))
     {
-        prompt(`Form submission successful!!`);
+        alert(`Form submission successful!!`);
     }
     else
     {
